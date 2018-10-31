@@ -69,7 +69,7 @@ public class GameBoard
       
       for (int x = 0; x<5; x++)
       {
-         int value = rand.nextInt(6);
+         int value = rand.nextInt(5);
          char c = alphabet.charAt(value);
          secretCode.add(Character.toString(c));
       }

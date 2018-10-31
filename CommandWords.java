@@ -11,7 +11,7 @@ public class CommandWords
     
     public CommandWords()
     {
-        board = new GameBoard(board.getNumOfLetters(), board.getNumOfSpaces());
+        board = new GameBoard();
         alphabet = board.getAlphabet();
             
     }
