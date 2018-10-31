@@ -82,7 +82,7 @@ public class GameBoard
       {
          char tempChar = (char)(97+x);
          String s = "" + tempChar;
-         alphabet.concat(s);
+         alphabet = alphabet.concat(s);
       }
       System.out.println(alphabet);
       return alphabet;
