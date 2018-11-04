@@ -9,7 +9,7 @@ class GameHistory
     //contructor
     public GameHistory()
     {
-        HashMap<String, ArrayList> previousGuesses = new HashMap<String, ArrayList>();
+        previousGuesses = new HashMap<String, ArrayList>();
         numOfGuesses = 0;
     }
     
@@ -31,7 +31,7 @@ class GameHistory
     }
     
     // Takes the most recent guess, adds it to the hashmap and increments numOfGuesses
-    public void setGuess( String guessedString, int bulls, int cows)
+    public static void setGuess( String guessedString, int bulls, int cows)
     {
         ArrayList<String> guessInfo = new ArrayList<String>();
         guessInfo.add(guessedString);

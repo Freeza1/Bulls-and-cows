@@ -10,7 +10,7 @@ public class GameBoard
    //instance variables
    private ArrayList<String> secretCode;
    private GameHistory history;
-   private String alphabet;
+   private static String alphabet;
    private int numOfLetters;
    private int numOfSpaces;
        
@@ -18,8 +18,8 @@ public class GameBoard
    public GameBoard(int letters, int spaces)
    {
       
-      ArrayList<String> secretCode = new ArrayList<String>();
-      history = new GameHistory();
+      secretCode = new ArrayList<String>();
+      
       alphabet = createAlphabet(numOfLetters);
       numOfLetters = letters;
       numOfSpaces = spaces;
@@ -44,10 +44,10 @@ public class GameBoard
    public GameBoard(String codeWord)
    {
       alphabet = createAlphabet(codeWord.length());
-      history = new GameHistory();
+      
       numOfLetters = codeWord.length();
       numOfSpaces = codeWord.length();
-      ArrayList<String> secretCode = new ArrayList<String>();
+      secretCode = new ArrayList<String>();
       for (int x=0; x<codeWord.length(); x++)
       {
          secretCode.add(Character.toString(codeWord.charAt(x)));
@@ -58,11 +58,11 @@ public class GameBoard
    public GameBoard()
    {
       alphabet = createAlphabet(5);
-      history = new GameHistory();
+      
       numOfLetters = 5;
       numOfSpaces = 5;
       
-      ArrayList<String> secretCode = new ArrayList<String>();
+      secretCode = new ArrayList<String>();
       
       Random rand = new Random();
       
@@ -84,11 +84,11 @@ public class GameBoard
          String s = "" + tempChar;
          alphabet = alphabet.concat(s);
       }
-      System.out.println(alphabet);
+
       return alphabet;
    }
    
-   public String getAlphabet()
+   public static String getAlphabet()
    {
       return alphabet;
    }

@@ -38,7 +38,7 @@ public class Parser
             word1 = tokenizer.nextToken();     
         else
             word1 = null;
-        if(commands.isCommand(word1))
+        if(commands.isCommand(word1) || commands.isGuess(word1))
             return new Command(word1);
         else
             return new Command(null);

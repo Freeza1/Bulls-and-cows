@@ -48,7 +48,8 @@ class Game {
             quitGame = quit();
         else if (commandWord.equals("history"))
             history.getHistory();
-       
+        else if(CommandWords.isGuess(commandWord))
+            board.compareGuess(commandWord);
         return quitGame;
       
      }
