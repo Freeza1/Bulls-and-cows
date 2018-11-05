@@ -9,6 +9,7 @@
  */
 
 
+
 import java.util.HashMap;
 import java.util.ArrayList;
 
@@ -42,12 +43,12 @@ class GameHistory
     }
     
     // Takes the most recent guess, adds it to the hashmap and increments numOfGuesses
-    public static void setGuess( String guessedString, int bulls, int cows)
+    public void setGuess(ArrayList theList)
     {
-        ArrayList<String> guessInfo = new ArrayList<String>();
-        guessInfo.add(guessedString);
-        guessInfo.add("Bulls: "+bulls);
-        guessInfo.add("Cows: "+cows);
+        ArrayList guessInfo = new ArrayList<String>();
+        guessInfo.add(theList.get(0));
+        guessInfo.add(theList.get(1));
+        guessInfo.add(theList.get(2));
         
         previousGuesses.put(("Guess"+numOfGuesses), guessInfo);
         numOfGuesses++;

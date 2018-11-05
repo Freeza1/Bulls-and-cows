@@ -11,70 +11,105 @@
  * @author Partner A: Cole Heiple freeza1, Partner B: Vallab Kb kbv
  * @Version 11/4/2018
  */
+ 
+import java.util.ArrayList;
 
 class Game {
     
     
     //instance variables
-    private GameBoard board;
-    private GameHistory history;
-    private Parser parser;
+   private GameBoard board;
+   private GameHistory history;
+   private Parser parser;
     
     //constuctor
-    public Game()
-    {
-        board = new GameBoard();
-        history = new GameHistory();
-        parser = new Parser();
-    }
-    //methods 
-    public void play()
-    {
-        boolean finished = false;
-        while (! finished)
-        {
-            Command command = parser.getCommand();
-            finished = processCommand(command);
-        }
-        
-    }
+   public Game(String args)
+   {
+      if(args.length() == 0)
+      {
+         board = new GameBoard();
+      }
+      else
+         board= new GameBoard(args);
+      history = new GameHistory();
+      parser = new Parser();
+   }
     
-    private boolean processCommand(Command command)
-    {
-        boolean quitGame = false;
+   public void play()
+   {
+      printHelp();
+      boolean finished = false;
+      while (! finished)
+      {
+         if(history.getNumOfGuesses() == 10)
+         {
+            System.out.println("You have exceeded the maximum number of guesses.");
+            System.out.println("The computer wins");
+            finished = true;
+         }
+         Command command = parser.getCommand();
+         finished = processCommand(command);
+      }
         
-        if(command.isUnknown())
-        {
-            System.out.println("I'm afraid I can't do that Dave.");
-            return false;
-        }
+   }
+    
+   private boolean processCommand(Command command)
+   {
+      ArrayList theList = new ArrayList<>(3);
+      boolean quitGame = false;
         
-        String commandWord = command.getCommandWord();
-        if(commandWord.equals("help"))
-            printHelp();
-        else if (commandWord.equals("start"))
-            play();
-        else if (commandWord.equals("quit"))
-            quitGame = quit();
-        else if (commandWord.equals("history"))
-            history.getHistory();
-        else if(CommandWords.isGuess(commandWord))
-            board.compareGuess(commandWord);
-        return quitGame;
+      if(command.isUnknown())
+      {
+         System.out.println("I'm afraid I can't do that Dave.");
+         return false;
+      }
+        
+      String commandWord = command.getCommandWord();
+      if(commandWord.equals("help"))
+         printHelp();
+      else if (commandWord.equals("quit"))
+         quitGame = quit();
+      else if (commandWord.equals("history"))
+         history.getHistory();
+      else if(CommandWords.isGuess(commandWord))
+      {
+         theList = board.compareGuess(commandWord);
+         int temp = (int) (theList.get(1));
+         if( temp == (board.getSecretCodeLength()))
+      {       
+         System.out.println("Congratulations!");
+         System.out.println("You guessed the secret code!");
+         System.out.println("It took you "+(history.getNumOfGuesses()+1)+" guesses");
+         quitGame = true;
+      }
       
-     }
+      if( temp != board.getSecretCodeLength())
+      {
+         System.out.println("You Guessed:");
+         System.out.println(temp+" Bulls");
+         System.out.println((int)(theList.get(2))+" Cows");
+      }
+         history.setGuess(theList);
+      }
+      return quitGame;
+      
+   }
                                     
-     private void printHelp()
-     {
-         System.out.println("Your command words are:");
-         System.out.println(parser.showCommands());
-     }
+   private void printHelp()
+   {
+      System.out.println("Your command words are:");
+      System.out.println(parser.showCommands());
+   }
     
-     private boolean quit()
-     {
-         System.out.println("You have quit the game");  
-         return true; 
-     }
+   private boolean quit()
+   {
+      System.out.println("You have quit the game");  
+      return true; 
+   }
+     
+   private void printGuess(ArrayList theList)
+   {
+   }
 
      
         

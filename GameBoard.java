@@ -2,7 +2,7 @@
  * This class is a part of the "Bulls and Cows" game. 
  * "Bulls and Cows" is a very simple, text based game.
  *  
- * This class is the main classs of the "Bulls and Cows" game.
+ * This class is the workhorse class of the "Bulls and Cows" game.
  * This class creates the gameboard and generates the secret code that
  * is to be guessed by the user. It also compares the users guess with the
  * secret code and displays the number of bulls and cows of each guess.
@@ -18,7 +18,6 @@ public class GameBoard
 {
    //instance variables
    private ArrayList<String> secretCode;
-   private GameHistory history;
    private static String alphabet;
    private int numOfLetters;
    private int numOfSpaces;
@@ -52,8 +51,13 @@ public class GameBoard
    // Creates the arraylist secretcode from a predetermined string
    public GameBoard(String codeWord)
    {
-      alphabet = createAlphabet(codeWord.length());
-      
+      codeWord = codeWord.toLowerCase();
+      alphabet = "";
+      for(int x=0;x<codeWord.length();x++)
+      {
+         if(!alphabet.contains(Character.toString(codeWord.charAt(x))))
+            alphabet+=Character.toString(codeWord.charAt(x));
+      }
       numOfLetters = codeWord.length();
       numOfSpaces = codeWord.length();
       secretCode = new ArrayList<String>();
@@ -93,7 +97,7 @@ public class GameBoard
          String s = "" + tempChar;
          alphabet = alphabet.concat(s);
       }
-
+   
       return alphabet;
    }
    
@@ -111,11 +115,17 @@ public class GameBoard
    {
       return numOfSpaces;
    }
+   
+   public int getSecretCodeLength()
+   {
+      return secretCode.size();
+   }
    // methods
    
    // compares the guessed string to the secret code
-   public void compareGuess(String guess)
+   public ArrayList compareGuess(String guess)
    {
+      
       int bulls = 0;
       int cows = 0;
       ArrayList<String> tempSecretCode = new ArrayList<>();
@@ -141,42 +151,38 @@ public class GameBoard
          
          if (tempSecretCode.get(x).equals(temp))
          {
-            tempSecretCode.remove(x);
-            guessedCode.remove(x);
+            tempSecretCode.set(x, "done");
+            guessedCode.set(x, "correct");
             bulls++;
          }
+         
+         
          
          
       }
       
       // second for loop takes the remaining secret code and checks to see if any 
       // cows remain from the secret code that is left
-      for (int x = 0; x<guessedCode.size(); x++)
+      if(bulls != getSecretCodeLength())
       {
-         String temp = guessedCode.get(x);
-         if (tempSecretCode.contains(temp))
+         for (int x = 0; x<guessedCode.size(); x++)
          {
-            tempSecretCode.remove(tempSecretCode.indexOf(guessedCode.get(x)));
-            guessedCode.remove(x);
-            cows++;
+            String temp = guessedCode.get(x);
+            if (tempSecretCode.contains(temp))
+            {
+               tempSecretCode.remove(tempSecretCode.indexOf(guessedCode.get(x)));
+               guessedCode.set(x, "correct");
+               cows++;
+            }
          }
       }
-      
-      if( bulls == (secretCode.size()))
-      {       
-         System.out.println("Congratulations!");
-         System.out.println("You guessed the secret code!");
-         System.out.println("It took you "+history.getNumOfGuesses()+" guesses");
-      }
-      
-      if( bulls != secretCode.size())
-      {
-         System.out.println("You Guessed:");
-         System.out.println(bulls+" Bulls");
-         System.out.println(cows+" Cows");
-      }
-      
-      history.setGuess(guess, bulls, cows);
+            
+      ArrayList theList = new ArrayList<>(3);
+      theList.add(guess);
+      theList.add(bulls);
+      theList.add(cows);
+      return theList;
+      //history.setGuess(guess, bulls, cows);
        
    }
    

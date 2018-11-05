@@ -11,19 +11,18 @@
 
 public class CommandWords
 {
-   // instance variables
-   private static final String[] validCommands = {"start","quit","history","help"};
+   private static final String[] validCommands = {"quit","history","help"};
    //private static final String[] alphabet = {"abcde"}
    private static String alphabet;
    
-   // constructor
+   
    public CommandWords()
    {
       alphabet = GameBoard.getAlphabet();
           
    }
   
-   // methods
+   
    public boolean isValid(String aString)
    {
       for(int x = 0; x < validCommands.length; x++)
@@ -31,21 +30,7 @@ public class CommandWords
          if(validCommands[x].equals(aString))
             return true;
       }
-      boolean guessTrue = true;
-      while( guessTrue != false)
-      {
-         for(int x=0; x<alphabet.length(); x++)
-         {
-            if(alphabet.contains(Character.toString(aString.charAt(x))))
-               guessTrue = true;
-            else
-            {
-               System.out.println("Guessed code must only contain the letters " +alphabet);
-               guessTrue = false;   
-            }
-         }
-      }
-      return false;
+            return false;
    }
                   
    public String[] getCommandWords()
@@ -68,10 +53,13 @@ public class CommandWords
       boolean isTrue = true;
       for (int x=0; x<alphabet.length();x++)
       {
-         if(alphabet.contains(guess))
+         if(alphabet.contains(Character.toString(guess.charAt(x))))
             isTrue = true;
          else
+            {
+            System.out.println("Your guess must contain the letters "+alphabet);
             return false;
+            }
          
       }
         return true;

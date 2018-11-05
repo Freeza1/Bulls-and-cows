@@ -14,9 +14,8 @@
  * @author Partner A: Cole Heiple freeza1, Partner B: Vallab Kb kbv
  * @Version 11/4/2018
  */
-
-
-import java.io.BufferedReader;
+ 
+ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
@@ -50,7 +49,7 @@ public class Parser
         StringTokenizer tokenizer = new StringTokenizer(inputLine);
 
         if(tokenizer.hasMoreTokens())
-            word1 = tokenizer.nextToken();     
+            word1 = tokenizer.nextToken().toLowerCase();     
         else
             word1 = null;
         if(commands.isCommand(word1) || commands.isGuess(word1))
