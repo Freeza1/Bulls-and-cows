@@ -1,21 +1,29 @@
-// Class name must be "Main"
-// Libraries included:
-// json simple, guava, apache commons lang3, junit, jmock
+/**
+ * This class is part of the "Bulls and Cows" game. 
+ * "Bulls and Cows" is a very simple, text based game.  
+ * 
+ * This class holds an enumeration of all command words known to the game.
+ * It is used to recognise commands as they are typed in.
+ * @author Partner A: Cole Heiple freeza1, Partner B: Vallab Kb kbv
+ * @Version 11/4/2018
+ */
+
 
 public class CommandWords
 {
+   // instance variables
    private static final String[] validCommands = {"start","quit","history","help"};
    //private static final String[] alphabet = {"abcde"}
    private static String alphabet;
    
-   
+   // constructor
    public CommandWords()
    {
       alphabet = GameBoard.getAlphabet();
           
    }
   
-   
+   // methods
    public boolean isValid(String aString)
    {
       for(int x = 0; x < validCommands.length; x++)

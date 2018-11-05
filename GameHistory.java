@@ -1,3 +1,14 @@
+/**
+ * This class is a part of the "Bulls and Cows" game. 
+ * "Bulls and Cows" is a very simple, text based game.
+ * 
+ * This class stores all the previous guesses made by the user
+ * and it displays the previous guesses when it is requested by the user
+ * @author Partner A: Cole Heiple freeza1, Partner B: Vallab Kb kbv
+ * @Version 11/4/2018
+ */
+
+
 import java.util.HashMap;
 import java.util.ArrayList;
 

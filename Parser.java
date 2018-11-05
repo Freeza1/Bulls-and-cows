@@ -1,6 +1,21 @@
-// Class name must be "Main"
-// Libraries included:
-// json simple, guava, apache commons lang3, junit, jmock
+/*
+ * This class is part of the "Bulls and Cows" game. 
+ * "Bulls and Cows" is a very simple, text based game.  
+ * 
+ * This parser reads user input and tries to interpret it as an "Game"
+ * command. Every time it is called it reads a line from the terminal and
+ * tries to interpret the line as a two word command. It returns the command
+ * as an object of class Command.
+ *
+ * The parser has a set of known command words. It checks user input against
+ * the known commands, and if the input is not one of the known commands, it
+ * returns a command object that is marked as an unknown command.
+ * 
+ * @author Partner A: Cole Heiple freeza1, Partner B: Vallab Kb kbv
+ * @Version 11/4/2018
+ */
+
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;

@@ -1,6 +1,15 @@
-// Class name must be "Main"
-// Libraries included:
-// json simple, guava, apache commons lang3, junit, jmock
+/**
+ * This class is a part of the "Bulls and Cows" game. 
+ * "Bulls and Cows" is a very simple, text based game.
+ *  
+ * This class is the main classs of the "Bulls and Cows" game.
+ * This class creates the gameboard and generates the secret code that
+ * is to be guessed by the user. It also compares the users guess with the
+ * secret code and displays the number of bulls and cows of each guess.
+ * @author Partner A: Cole Heiple freeza1, Partner B: Vallab Kb kbv
+ * @Version 11/4/2018
+ */
+ 
 import java.util.ArrayList;
 import java.util.Random;
 import java.io.BufferedReader;

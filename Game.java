@@ -1,6 +1,16 @@
-// Class name must be "Main"
-// Libraries included:
-// json simple, guava, apache commons lang3, junit, jmock
+/**
+ * This class is a part of the "Bulls and Cows" game. 
+ * "Bulls and Cows" is a very simple, text based game.  
+ * To play this game, create an instance of this class and call the "play"
+ * method.
+ * 
+ * This main class creates and initialises all the others: it creates the 
+ * game board, creates game history, creates the parser and starts the game.  It also evaluates and
+ * executes the commands that the parser returns.
+ * 
+ * @author Partner A: Cole Heiple freeza1, Partner B: Vallab Kb kbv
+ * @Version 11/4/2018
+ */
 
 class Game {
     
@@ -17,7 +27,7 @@ class Game {
         history = new GameHistory();
         parser = new Parser();
     }
-    
+    //methods 
     public void play()
     {
         boolean finished = false;
